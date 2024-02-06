@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """ objects that handles all default RestFul API actions for cities """
-''' Import data and modules'''
-'''Cites.py file'''
 from models.city import City
 from models.state import State
 from models import storage
@@ -15,7 +13,7 @@ from flasgger.utils import swag_from
 @swag_from('documentation/city/cities_by_state.yml', methods=['GET'])
 def get_cities(state_id):
     """
-    It Retrieves the list of all cities objects
+    Retrieves the list of all cities objects
     of a specific State, or a specific city
     """
     list_cities = []
@@ -32,7 +30,7 @@ def get_cities(state_id):
 @swag_from('documentation/city/get_city.yml', methods=['GET'])
 def get_city(city_id):
     """
-    It Retrieves a specific city based on id
+    Retrieves a specific city based on id
     """
     city = storage.get(City, city_id)
     if not city:
@@ -44,7 +42,7 @@ def get_city(city_id):
 @swag_from('documentation/city/delete_city.yml', methods=['DELETE'])
 def delete_city(city_id):
     """
-    It Deletes a city based on id provided
+    Deletes a city based on id provided
     """
     city = storage.get(City, city_id)
 
@@ -61,7 +59,7 @@ def delete_city(city_id):
 @swag_from('documentation/city/post_city.yml', methods=['POST'])
 def post_city(state_id):
     """
-    It Creates a City
+    Creates a City
     """
     state = storage.get(State, state_id)
     if not state:
@@ -82,7 +80,7 @@ def post_city(state_id):
 @swag_from('documentation/city/put_city.yml', methods=['PUT'])
 def put_city(city_id):
     """
-    It Updates a City
+    Updates a City
     """
     city = storage.get(City, city_id)
     if not city:

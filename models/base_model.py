@@ -3,13 +3,14 @@
 Contains class BaseModel
 """
 
+from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 import models
 from os import getenv
 import sqlalchemy
 from sqlalchemy import Column, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
 import uuid
+import hashlib
 
 time = "%Y-%m-%dT%H:%M:%S.%f"
 
@@ -68,12 +69,14 @@ class BaseModel:
         new_dict["__class__"] = self.__class__.__name__
         if "_sa_instance_state" in new_dict:
             del new_dict["_sa_instance_state"]
+
+        # Hash the password to MD5 value if it exists
         if save_fs is None:
             if "password" in new_dict:
                 del new_dict["password"]
+
         return new_dict
 
     def delete(self):
         """delete the current instance from the storage"""
         models.storage.delete(self)
-

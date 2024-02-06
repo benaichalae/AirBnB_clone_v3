@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """ objects that handles all default RestFul API actions for Amenities"""
-''' Import data'''
-
 from models.amenity import Amenity
 from models import storage
 from api.v1.views import app_views
@@ -26,7 +24,7 @@ def get_amenities():
                  strict_slashes=False)
 @swag_from('documentation/amenity/get_amenity.yml', methods=['GET'])
 def get_amenity(amenity_id):
-    """It Retrieves an amenity """
+    """ Retrieves an amenity """
     amenity = storage.get(Amenity, amenity_id)
     if not amenity:
         abort(404)
@@ -39,7 +37,7 @@ def get_amenity(amenity_id):
 @swag_from('documentation/amenity/delete_amenity.yml', methods=['DELETE'])
 def delete_amenity(amenity_id):
     """
-    It removes an amenity  Object
+    Deletes an amenity  Object
     """
 
     amenity = storage.get(Amenity, amenity_id)
@@ -57,7 +55,7 @@ def delete_amenity(amenity_id):
 @swag_from('documentation/amenity/post_amenity.yml', methods=['POST'])
 def post_amenity():
     """
-    It Creates an amenity
+    Creates an amenity
     """
     if not request.get_json():
         abort(400, description="Not a JSON")
@@ -76,7 +74,7 @@ def post_amenity():
 @swag_from('documentation/amenity/put_amenity.yml', methods=['PUT'])
 def put_amenity(amenity_id):
     """
-    It Updates an amenity
+    Updates an amenity
     """
     if not request.get_json():
         abort(400, description="Not a JSON")
@@ -94,5 +92,3 @@ def put_amenity(amenity_id):
             setattr(amenity, key, value)
     storage.save()
     return make_response(jsonify(amenity.to_dict()), 200)
-
-''' Amenites.py file'''

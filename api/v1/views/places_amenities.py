@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-'''Places_amenities.py file'''
 """ objects that handle all default RestFul API actions for Place - Amenity """
-'''Import files and modules'''
 from models.place import Place
 from models.amenity import Amenity
 from models import storage
@@ -17,7 +15,7 @@ from flasgger.utils import swag_from
            methods=['GET'])
 def get_place_amenities(place_id):
     """
-    It Retrieves the list of all Amenity objects of a Place
+    Retrieves the list of all Amenity objects of a Place
     """
     place = storage.get(Place, place_id)
 
@@ -39,7 +37,7 @@ def get_place_amenities(place_id):
            methods=['DELETE'])
 def delete_place_amenity(place_id, amenity_id):
     """
-    It Deletes a Amenity object of a Place
+    Deletes a Amenity object of a Place
     """
     place = storage.get(Place, place_id)
 
@@ -70,7 +68,7 @@ def delete_place_amenity(place_id, amenity_id):
            methods=['POST'])
 def post_place_amenity(place_id, amenity_id):
     """
-    It Link a Amenity object to a Place
+    Link a Amenity object to a Place
     """
     place = storage.get(Place, place_id)
 
